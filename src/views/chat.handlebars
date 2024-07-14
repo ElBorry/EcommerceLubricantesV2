@@ -1,0 +1,24 @@
+<div class="w-100 d-flex flex-column align-items-center">
+  <h1 class="text-center">WELCOME TO THE MATISALA</h1>
+  <div class="bg-secondary-subtle w-50">
+    <h3 class="w-100 p-2 m-2 align-items-center">LAST MESSAGES</h3>
+    <span class="w-100 p-2 m-2" id="allMessages">{{messages}}</span>
+  </div>
+
+  <div class="w-50 d-flex justify-content-center align-items-center fw-bold"><span
+      id="nickname"
+    ></span>
+
+    <input
+      class="w-100 p-2 m-2"
+      type="text"
+      name="message"
+      id="message"
+      placeholder="Type and chat"
+    />
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="/scripts/chat.js"></script>

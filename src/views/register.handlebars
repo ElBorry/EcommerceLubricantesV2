@@ -1,0 +1,73 @@
+<h1 class="bg-dark p-2 text-center text-light w-100">REGISTER FORM</h1>
+
+<main class="d-flex w-100 flex-grow-1">
+  <section class="d-flex flex-column align-items-center w-50 m-5 p-5">    
+    <form class="text-center" style="width: 16rem;" action="/api/users" method="post">
+
+      <div class="mb-3 m-2 p-2">
+        <label for="photo" class="form-label">PHOTO</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          name="photo"
+          placeholder="PHOTO"
+        />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="email" class="form-label">EMAIL</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="EMAIL"
+        />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="password" class="form-label">PASSWORD</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="PASSWORD"
+        />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="role" class="form-label">ROLE</label>
+        <input
+          type="text"
+          class="form-control"
+          id="role"
+          name="role"
+          placeholder="ROLE"
+        />
+      </div>
+      <input
+        class="m-2 p-2 text-center btn btn-primary"
+        type="button"
+        id="registration"
+        value="REGISTER!"
+      />
+    </form>
+  </section>
+  <section
+    id="users"
+    class="d-flex flex-wrap"
+    style="width: 50%; height: calc(100vh - 60px);"
+  ></section>
+</main>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+  const socket = io(); socket.on("users", data => { 
+    const template = data.map(each => 
+    ` <img style="width: 50%; height: 50%" src="${each.photo}" class="object-fit-cover" alt="${each.id}"> `).reverse().splice(0, 4).join("");   
+  document.querySelector("#users").innerHTML = template });
+  document.querySelector("#registration").addEventListener("click", (event) => {
+  const photo = document.querySelector("#photo").value; 
+  const email = document.querySelector("#email").value; 
+  const password = document.querySelector("#password").value; 
+  const role = document.querySelector("#role").value; 
+  socket.emit("registration", {photo, email, password, role}) })
+</script>
