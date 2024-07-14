@@ -1,8 +1,48 @@
-<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
-  <h1 class="bg-success-subtle p-2 text-center text-success w-100">ECOMMERCE DE LUBRICANTES</h1>
-  <section
-    class="m-3 w-100 d-flex flex-column justify-content-center align-items-center"
-  >
-    BIENVENIDO!!!
-  </section>
-</main>
+<div class=" d-flex col" style="background-color: #ffc600;">
+  <a class="page-link btn-dark m-2 p-2" href="/products/paginate?limit={{limit}}&page={{prevPage}}">Previous</a>
+  <h1 class="p-2 text-center text-dark w-100">PRODUCTS</h1>
+  {{#each pagination}}
+  <a class="page-link btn-dark m-2 p-2" href="/products/paginate?limit={{../limit}}&page={{this}}">{{this}}</a>
+  {{/each}}
+  <a class="page-link btn-dark m-2 p-2" href="/products/paginate?limit={{limit}}&page={{nextPage}}">Next</a>
+</div>
+
+<div class="d-flex justify-content-end m-2">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    CATEGORIES
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/products/category/Advance">ADVANCE</a></li>
+    <li><a class="dropdown-item" href="/products/category/Gadus">GADUS</a></li>
+    <li><a class="dropdown-item" href="/products/category/Helix">HELIX</a></li>
+    <li><a class="dropdown-item" href="/products/category/Notebooks">RIMULA</a></li>
+    <li><a class="dropdown-item" href="/">TODOS</a></li>
+  </ul>
+</div>
+
+<div class="container-fluid d-flex justify-content-center align-items-center mt-5">
+  <div class="col justify-content-center align-items-center">
+    <div class="row row-cols-1 row-cols-md-4 g-4 align-items-center text-center">
+      {{#each products}}
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card m-2 mb-5" style="box-shadow: 0 5px 5px rgb(255, 198, 0); height:25rem; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="card-body">
+            <h6 class="m-2">{{this.title}}</h4>
+              <img style="width: 50%; height: 65%" src={{this.photo}} alt={{this.id}}>
+              <div>
+                <a class="p-3 text-center btn btn-primary bg-dark text-light mt-4"
+                  href=/pages/details.html?id={{this._id}}>Details</a>
+              </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{!--
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script> --}}
+{{!--
+<script src="scripts/landing.js"></script> --}}

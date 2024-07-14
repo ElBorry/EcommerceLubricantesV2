@@ -1,42 +1,52 @@
+<h1 class="p-2 text-center text-dark w-100" style="background-color: #ffc600;">NEW PRODUCTS</h1>
+
 <main class="d-flex w-100 flex-grow-1">
-  <section class="d-flex flex-column align-items-center w-50">
-    <h1 class="bg-success-subtle p-2 text-center text-success w-100">REGISTER
-      FORM</h1>
-    <form class="d-flex flex-column w-50 m-3">
+  <div class="d-flex flex-column align-items-center w-25 m-5 p-5">
+    <h2 class="text-center">ENTER NEW PRODUCT TO THE CATALOG</h2>
+    <form class="text-center" style="width: 15rem;">
+      <div class="mb-3 m-2 p-2">
+        <label for="id" class="form-label">ID</label>
+        <input type="text" class="form-control" id="id" />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="title" class="form-label">TITLE</label>
+        <input type="text" class="form-control" id="title" />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="photo" class="form-label">PHOTO</label>
+        <input type="text" class="form-control" id="photo" />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="category" class="form-label">CATEGORY</label>
+        <input type="text" class="form-control" id="category" />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="price" class="form-label">PRICE</label>
+        <input type="text" class="form-control" id="price" />
+      </div>
+      <div class="mb-3 m-2 p-2">
+        <label for="stock" class="form-label">STOCK</label>
+        <input type="text" class="form-control" id="stock" />
+      </div>
       <input
-        class="m-2 p-2 text-center"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="EMAIL"
-      />
-      <input
-        class="m-2 p-2 text-center"
-        type="password"
-        name="password"
-        id="password"
-        placeholder="PASSWORD"
-      />
-      <input
-        class="m-2 p-2 text-center"
-        type="text"
-        name="photo"
-        id="photo"
-        placeholder="PHOTO"
-      />
-      <input
-        class="m-2 p-2 text-center btn btn-success"
+        class="m-2 p-2 text-center btn btn-dark"
         type="button"
-        id="register"
-        value="REGISTER!"
+        id="new_product"
+        value="REGISTER PRODUCT" style="background-color: #dd1d21;"
       />
     </form>
-  </section>
-  <section
-    id="users"
-    class="d-flex flex-wrap"
-    style="width: 50%; height: calc(100vh - 60px);"
-  ></section>
+  </div>
+
+  <div class="d-flex flex-wrap m-2 p-2" >
+    <div class="col">
+      <div
+        id="products"
+        class="row row-cols-1 row-cols-md-3 g-4 align-items-center text-center m-2"
+      >
+      </div>
+    </div>
+  </div>
+
 </main>
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 <script src="/scripts/real.js"></script>

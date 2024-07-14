@@ -1,13 +1,13 @@
-import CartsDTO from "../dto/carts.dto.js";
-import dao from "../data/dao.factory.js"
-const { carts } = dao;
-class CartsRepository {
+import dao from "../data/dao.factory.js";
+const { products } = dao;
+import ProductsDTO from "../dto/products.dto.js";
+class ProductsRepository {
   constructor(manager) {
     this.model = manager;
   }
   createRepository = async (data) => {
     try {
-      data = new CartsDTO(data);
+      data = new ProductsDTO(data);
       const one = await this.model.create(data);
       return one;
     } catch (error) {
@@ -30,6 +30,14 @@ class CartsRepository {
       throw error;
     }
   };
+  paginateRepository = async ({ filter, opts }) => {
+    try {
+      const all = await this.model.paginate({ filter, opts });
+      return all;
+    } catch (error) {
+      throw error;
+    }
+  };
   updateRepository = async (id, data) => {
     try {
       const one = await this.model.update(id, data);
@@ -46,23 +54,7 @@ class CartsRepository {
       throw error;
     }
   };
-  destroyAllRepository = async (id) => {
-    try {
-      const all = await this.model.destroyAll(id);
-      return all;
-    } catch (error) {
-      throw error;
-    }
-  };
-  aggregateRepository = async (obj) => {
-    try {
-      const one = await this.model.aggregate(obj);
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  }
 }
 
-const cartsRepository = new CartsRepository(carts);
-export default cartsRepository;
+const productsRepository = new ProductsRepository(products);
+export default productsRepository;
