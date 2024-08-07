@@ -13,6 +13,7 @@
   "author": "Correa",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "nodemon": "^3.1.0"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "dotenv": "^16.4.5",
     "exceljs": "^4.4.0",
     "express": "^4.19.2",
+    "express-compression": "^1.0.2",
     "express-handlebars": "^6.0.6",
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
@@ -31,12 +33,15 @@
     "mongoose-paginate-v2": "^1.8.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.14",
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "session-file-store": "^1.5.0",
     "socket.io": "^4.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "sweetalert2": "^11.6.13",
     "winston": "^3.13.1",
     "winston-daily-rotate-file": "^5.0.0"

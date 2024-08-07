@@ -1,17 +1,23 @@
 //DAO - Assign corresponding manager
 import dao from "../data/dao.factory.js";
-import CreateCartsDto from "../dto/create/carts.dto.create.js";
-import UpdateCartsDto from "../dto/update/carts.dto.update.js";
+import CreateUsersDto from "../dto/create/users.dto.create.js";
+import UpdateUsersDto from "../dto/update/users.dto.update.js";
+import sendEmail from "../utils/mail/mailing.util.js";
 
-const { cartsManager } = dao;
+const { usersManager } = dao;
 
-class CartsRepository {
+class AuthRepository {
   constructor(manager) {
     this.manager = manager;
   }
   createRepository = async (data) => {
     try {
-      data = new CreateCartsDto(data);
+      data = new CreateUsersDto(data);
+      await sendEmail({
+        email: data.email,
+        name: data.username,
+        code: data.code,
+      });
       const newItem = await this.manager.create(data);
       return newItem;
     } catch (error) {
@@ -44,7 +50,7 @@ class CartsRepository {
   };
   updateRepository = async (uid, data) => {
     try {
-      data = new UpdateCartsDto(data);
+      data = new UpdateUsersDto(data);
       const itemUpdated = await this.manager.update(uid, data);
       return itemUpdated;
     } catch (error) {
@@ -85,5 +91,5 @@ class CartsRepository {
   };
 }
 
-const cartsRepository = new CartsRepository(cartsManager);
-export default cartsRepository;
+const authRepository = new AuthRepository(usersManager);
+export default authRepository;

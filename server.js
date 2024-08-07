@@ -1,68 +1,45 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-import enviroment from "./src/utils/env.util.js";
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import compression from "express-compression";
+import swaggerJSDoc from "swagger-jsdoc";
+import { serve, setup } from "swagger-ui-express";
+
+import indexRouter from "./src/router/index.router.js";
+import __dirname from "./utils.js";
+import argsUtil from "./src/utils/args/args.util.js";
+import variablesEnviroment from "./src/utils/env/env.util.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
-import morgan from "morgan";
-import { engine } from "express-handlebars";
-import __dirname from "./utils.js";
-import { createServer } from "http";
-import { Server } from "socket.io";
-import socketCb from "./src/router/index.socket.js";
-import cookieParser from "cookie-parser";
-import argsUtil from "./src/utils/args.util.js";
-import IndexRouter from "./src/router/index.router.js";
-import cors from "cors";
-import mongoose from 'mongoose';
-import passport from "./src/middlewares/passport.mid.js";
-import logger from './src/utils/logger.js';
+import winstonMid from "./src/middlewares/winston.mid.js";
+import swaggerOptions from "./src/utils/swagger/swagger.util.js";
 
+//HTTP Server
 const server = express();
-const port = enviroment.PORT || argsUtil.p;
-
-const connectToDatabase = async () => {
-  try {
-    await mongoose.connect(enviroment.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    logger.info('Connected to MongoDB');
-  } catch (err) {
-    logger.error('Error connecting to MongoDB:', err);
-  }
+const port = variablesEnviroment.PORT || argsUtil.p;
+const ready = () => {
+  console.log("Server ready on port :" + port);
 };
+server.listen(port, ready);
 
-connectToDatabase();
+const specs = swaggerJSDoc(swaggerOptions);
 
-const ready = async () => {
-  logger.info("Server ready on port " + port);
-};
-
-const nodeServer = createServer(server);
-nodeServer.listen(port, ready);
-
-const socketServer = new Server(nodeServer);
-socketServer.on("connection", socketCb);
-
-server.engine("handlebars", engine());
-server.set("view engine", "handlebars");
-server.set("views", __dirname + "/src/views");
-server.use(cookieParser(enviroment.SECRET_KEY));
-
+//MIDDLEWARES - EXPRESS
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(morgan("dev"));
 server.use(express.static(__dirname + "/public"));
+server.use(winstonMid);
+server.use(cookieParser(variablesEnviroment.SECRET_COOKIE));
 server.use(cors({ origin: true, credentials: true }));
+server.use("/api/docs", serve, setup(specs));
+server.use(
+  compression({
+    brotli: { enabled: true, zlib: {} },
+  })
+);
 
-server.use(passport.initialize());
-
-const router = new IndexRouter();
-server.use("/", router.getRouter());
+//ROUTER MAIN
+server.use("/", indexRouter);
+//MIDDLEWARES - OWN
 server.use(errorHandler);
 server.use(pathHandler);
-
-logger.info(argsUtil);
-logger.info(enviroment);
