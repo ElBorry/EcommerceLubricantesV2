@@ -1,21 +1,21 @@
+import { checkMandatoryFieldsUsers } from "../../middlewares/checkMandatoryFieldsUsers.mid.js";
 import CustomRouter from "../CustomRouter.js";
 import {
   create,
+  destroy,
   read,
   readOne,
   update,
-  destroy,
 } from "../../controllers/users.controller.js";
-import isValidData from "../../middlewares/isValidData.mid.js";
+
 class UsersRouter extends CustomRouter {
   init() {
-    this.create("/", /*["ADMIN"]*/ ["PUBLIC"], isValidData, create);
-    this.read("/", ["PUBLIC"], read);
-    this.read("/:uid", ["PUBLIC"], readOne);
-    this.update("/:uid", ["PUBLIC"] /*["ADMIN"]*/, update);
-    this.destroy("/:uid", ["PUBLIC"] /*["ADMIN"]*/, destroy);
+    this.create("/", ["PUBLIC"], checkMandatoryFieldsUsers, create);
+    this.read("/", ["ADMIN"], read);
+    this.read("/:uid", ["USER", "ADMIN"], readOne);
+    this.update("/:uid", ["ADMIN"], update);
+    this.destroy("/:uid", ["ADMIN"], destroy);
   }
 }
 
-const usersRouter = new UsersRouter();
-export default usersRouter.getRouter();
+export default new UsersRouter().getRouter();

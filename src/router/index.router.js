@@ -1,18 +1,25 @@
 import CustomRouter from "./CustomRouter.js";
-import ApiRouter from "./api/index.api.js";
-import ViewsRouter from "./views/index.view.js";
-import LoggerRouter from './logger.router.js'; // Importa el LoggerRouter
+import apiRouter from "./api/index.api.js";
+import viewsRouter from "./views/index.view.js";
 
-const api = new ApiRouter();
-const apiRouter = api.getRouter();
-const views = new ViewsRouter();
-const viewsRouter = views.getRouter();
-const loggerRouter = new LoggerRouter().getRouter(); // Crea una instancia de LoggerRouter
-
-export default class IndexRouter extends CustomRouter {
-    init() {
-        this.router.use("/api", apiRouter);
-        this.router.use("/", viewsRouter);
-        this.router.use(loggerRouter); // Añade el loggerRouter
-    }
+class IndexRouter extends CustomRouter {
+  init() {
+    this.use("/api", apiRouter);
+    this.use("/", viewsRouter);
+    this.read("/fork", ["PUBLIC"], (req, res, next) => {
+      try {
+        const childProcess = fork("./src/processes/sum.proc.js");
+        childProcess.send("start");
+        childProcess.on("message", (result) => {
+          return res.json({ result });
+        });
+      } catch (error) {
+        return next(error);
+      }
+    });
+  }
 }
+
+const indexRouter = new IndexRouter();
+
+export default indexRouter.getRouter();

@@ -1,4 +1,4 @@
-import passport from "passport";
+import passport from "./passport.mid.js";
 
 function passportCb(strategy) {
     return async (req, res, next) => {

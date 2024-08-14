@@ -3,7 +3,7 @@ import productsRouter from "./products.view.js";
 import usersRouter from "./users.view.js";
 import CustomRouter from "../CustomRouter.js";
 
-// const viewsRouter = Router();
+const viewsRouter = Router();
 export default class ViewsRouter extends CustomRouter {
   init() {
     this.router.use("/products", productsRouter);

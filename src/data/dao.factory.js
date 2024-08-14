@@ -1,5 +1,5 @@
-import argsUtil from "../utils/args.util.js";
-import dbConnect from "../utils/dbConnect.util.js";
+import argsUtil from "../utils/args/args.util.js";
+import dbConnect from "../utils/mongo/dbConnection.util.js";
 
 const persistence = argsUtil.persistence;
 let dao = {};
