@@ -1,10 +1,14 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { Strategy as GoogleStrategy } from "passport-google-oauth2";
-import { Strategy as JWT_SECRET, ExtractJwt } from "passport-jwt";
-import userManager from "../data/mongo/managers/UsersManager.mongo.js";
-import { createHash, verifyHash } from "../utils/hash.util.js";
-import { createToken } from "../utils/token.util.js";
+import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
+import crypto from "crypto";
+import { verifyPassword } from "../utils/hashPassword/hashPassword.js";
+import { createToken } from "../utils/token/token.util.js";
+import variablesEnviroment from "../utils/env/env.util.js";
+import authRepository from "../repositories/auth.rep.js";
+import sendEmailLogin from "../utils/mail/mailingLogin.util.js";
+import CustomError from "../utils/errors/CustomError.js";
+import errors from "../utils/errors/erros.dictionary.js";
 
 passport.use(
   "register",
@@ -12,25 +16,14 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        if (!email || !password) {
-          const error = new Error("Please enter a valid email and password!");
-          error.statusCode = 400;
-          return done(null, null, error);
-        }
-        console.log("Checking if email exists:", email);
-        const one = await userManager.readByEmail(email);
-        if (one) {
-          const error = new Error("Email already registered!");
-          error.statusCode = 401;
+        const checkUSer = await authRepository.readByEmailRepository(email);
+        if (checkUSer) {
+          const error = CustomError.new(errors.invalid);
           return done(error);
         }
-        const hashPassword = createHash(password);
-        req.body.password = hashPassword;
-        console.log("Creating new user with data:", req.body);
-        const user = await userManager.create(req.body);
-        return done(null, user);
+        const newUser = await authRepository.createRepository(req.body);
+        return done(null, newUser);
       } catch (error) {
-        console.error("Error during registration:", error);
         return done(error);
       }
     }
@@ -43,64 +36,30 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        console.log("Attempting to login with email:", email);
-        const one = await userManager.readByEmail(email);
-        if (!one) {
-          const error = new Error("Email not registered!");
-          error.statusCode = 401;
-          return done(null, false, error);
-        }
-        const verify = verifyHash(password, one.password);
-        if (verify) {
-          const user = {
-            email,
-            role: one.role,
-            photo: one.photo,
-            _id: one._id,
-            online: true,
-          };
-          const token = createToken(user);
-          user.token = token;
-          console.log("User login successful:", user);
-          return done(null, user);
-        }
-        const error = new Error("Invalid Credentials!");
-        error.statusCode = 401;
-        return done(null, false, error);
-      } catch (error) {
-        console.error("Error during login:", error);
-        return done(error);
-      }
-    }
-  )
-);
-
-passport.use(
-  "google",
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8080/api/sessions/google/callback",
-      passReqToCallback: true,
-    },
-    async (req, accessToken, refreshToken, profile, done) => {
-      try {
-        const { id, picture } = profile;
-        let user = await userManager.readByEmail(id);
+        let user = await authRepository.readByEmailRepository(email);
         if (!user) {
-          user = {
-            email: id,
-            photo: picture,
-            password: createHash(id),
-          };
-          user = await userManager.create(user);
+          const error = CustomError.new(errors.auth);
+          return done(error);
         }
-        req.session.email = user.email;
-        req.session.online = true;
-        req.session.role = user.role;
-        req.session.photo = user.photo;
-        req.session.user_id = user._id;
+        const verify = verifyPassword(password, user.password);
+        if (!verify || !user.verify) {
+          const error = CustomError.new(errors.invalid);
+          return done(error);
+        }
+        const codeOnline = crypto.randomBytes(3).toString("hex");
+        user = await authRepository.updateRepository(user._id, {
+          code: codeOnline,
+        });
+        await sendEmailLogin({
+          email: user.email,
+          name: user.username,
+          code: user.code,
+        });
+
+        // Protect user password!!
+        delete user.password;
+        const token = createToken(user);
+        req.token = token;
         return done(null, user);
       } catch (error) {
         return done(error);
@@ -111,20 +70,19 @@ passport.use(
 
 passport.use(
   "jwt",
-  new JWT_SECRET(
+  new JWTStrategy(
     {
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req) => req?.cookies["token"],
       ]),
-      secretOrKey: process.env.JWT_SECRET,
+      secretOrKey: variablesEnviroment.SECRET_JWT,
     },
     (data, done) => {
       try {
         if (data) {
           return done(null, data);
         } else {
-          const error = new Error("Forbidden from jwt!");
-          error.statusCode = 403;
+          const error = CustomError.new(errors.jwterror);
           return done(error);
         }
       } catch (error) {

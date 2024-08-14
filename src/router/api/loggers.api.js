@@ -3,9 +3,8 @@ import CustomRouter from "../CustomRouter.js";
 
 class LoggerRouter extends CustomRouter {
   init() {
-    this.read("/", ["PUBLIC"], logsMessages);
+    this.read("/", ["PUBLIC"], logsMessages); // Verifica que `logsMessages` sea una función correcta
   }
 }
 
-const loggerRouter = new LoggerRouter().getRouter();
-export default loggerRouter;
+export default new LoggerRouter().getRouter(); // Exporta el router correctamente

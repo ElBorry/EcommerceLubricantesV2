@@ -27,4 +27,4 @@ class ProductsRouter extends CustomRouter {
   }
 }
 
-export const productsRouter = new ProductsRouter().getRouter();
+export default new ProductsRouter().getRouter();

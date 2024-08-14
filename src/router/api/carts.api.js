@@ -19,4 +19,4 @@ class CartsRouter extends CustomRouter {
   }
 }
 
-export const cartsRouter = new CartsRouter().getRouter();
+export default new CartsRouter().getRouter();
