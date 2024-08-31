@@ -36,20 +36,30 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
+        console.log("Attempting to log in with email:", email);  // Log del email
+
         let user = await authRepository.readByEmailRepository(email);
         if (!user) {
+          console.error("User not found for email:", email);  // Usuario no encontrado
           const error = CustomError.new(errors.auth);
           return done(error);
         }
+
+        console.log("User found:", user);  // Log del usuario encontrado
+
         const verify = verifyPassword(password, user.password);
         if (!verify || !user.verify) {
+          console.error("Password verification failed for user:", email);  // Contraseña incorrecta
           const error = CustomError.new(errors.invalid);
           return done(error);
         }
+
+        console.log("Password verified successfully for user:", email);  // Contraseña verificada
         const codeOnline = crypto.randomBytes(3).toString("hex");
         user = await authRepository.updateRepository(user._id, {
           code: codeOnline,
         });
+
         await sendEmailLogin({
           email: user.email,
           name: user.username,
@@ -60,8 +70,12 @@ passport.use(
         delete user.password;
         const token = createToken(user);
         req.token = token;
+
+        console.log("Login successful, token created:", token);  // Login exitoso
+
         return done(null, user);
       } catch (error) {
+        console.error("Error during login process:", error);  // Error general
         return done(error);
       }
     }

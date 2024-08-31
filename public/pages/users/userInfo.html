@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Info</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../assets/favicons/perfil.png"
+    />
+  </head>
+
+  <body>
+    <div class="max-w-1200 w-full min-h-screen bg-[#dd1d21]">
+      <nav class="grid grid-cols-3 gap-4 bg-[#ffffff]">
+        <!-- Logo -->
+        <div class="flex justify-center items-center">
+          <a href="../../index.html">
+            <img
+              src="../../assets/images/logoStore.jpg"
+              alt="Logo"
+              class="h-[80px] w-[80px]"
+            />
+          </a>
+        </div>
+        <!-- Store -->
+        <div class="flex justify-center items-center">
+          <a href="../../index.html">
+            <img
+              src="../../assets/icons/shopping-store.png"
+              alt="Logo"
+              class="h-[80px] w-[80px]"
+            />
+          </a>
+        </div>
+        <!-- Icons -->
+        <div class="flex justify-evenly items-center" id="headerIcons"></div>
+      </nav>
+      <div class="w-1/2 mx-auto my-10 bg-white rounded-lg shadow-md p-5">
+        <img
+          id="img-user"
+          class="w-32 h-32 rounded-full mx-auto"
+          alt="Profile picture"
+        />
+        <h2 id="username" class="text-center text-2xl font-semibold mt-3"></h2>
+        <h2
+          id="email-user"
+          class="text-center text-2xl font-semibold mt-3"
+        ></h2>
+        <h2
+          id="password-user"
+          class="text-center text-2xl font-semibold mt-3"
+        ></h2>
+        <h2 id="role-user" class="text-center text-2xl font-semibold mt-3"></h2>
+      </div>
+    </div>
+
+    <script src="../../scripts/userInfo.js" type="module"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

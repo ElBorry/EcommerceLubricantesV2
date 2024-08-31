@@ -1,56 +1,57 @@
 import argsUtil from "../utils/args/args.util.js";
-import dbConnect from "../utils/mongo/dbConnection.util.js";
+import { dbConnection } from "../utils/mongo/dbConnection.util.js";
 
 const persistence = argsUtil.persistence;
 let dao = {};
 
 switch (persistence) {
+  case "fs":
+    console.log("connected to file system");
+    const { default: productsManagerFs } = await import(
+      "./fs/ProductsManager.fs.js"
+    );
+    const { default: cartsManagerFs } = await import("./fs/CartsManager.fs.js");
+    const { default: usersManagerFs } = await import("./fs/UsersManager.fs.js");
+    dao = {
+      usersManager: usersManagerFs,
+      productsManager: productsManagerFs,
+      cartsManager: cartsManagerFs,
+    };
+    break;
   case "memory":
     console.log("connected to memory");
-    const { default: userManagerMem } = await import(
-      "./memory/UserManager.memory.js"
+    const { default: productsManagerMemory } = await import(
+      "./memory/ProductsManager.memory.js"
     );
-    const { default: productManagerMem } = await import(
-      "./memory/ProductManager.memory.js"
+    const { default: cartsManagerMemory } = await import(
+      "./memory/CartsManager.memory.js"
     );
-    const { default: cartManagerMem } = await import(
-      "./memory/CartManager.memory.js"
+    const { default: usersManagerMemory } = await import(
+      "./memory/UsersManager.memory.js"
     );
     dao = {
-      users: userManagerMem,
-      products: productManagerMem,
-      carts: cartManagerMem,
+      usersManager: usersManagerMemory,
+      productsManager: productsManagerMemory,
+      cartsManager: cartsManagerMemory,
     };
     break;
-  case "fs":
-    console.log("connected to fs");
-    const { default: userManagerFs } = await import("./fs/UserManager.fs.js");
-    const { default: productManagerFs } = await import(
-      "./fs/ProductManager.fs.js"
-    );
-    const { default: cartManagerFs } = await import("./fs/CartManager.fs.js");
-    dao = {
-      users: userManagerFs,
-      products: productManagerFs,
-      carts: cartManagerFs,
-    };
-    break;
+  case "mongo":
   default:
-    //MONGO
-    dbConnect();
-    const { default: productManagerMongo } = await import(
-      "./mongo/managers/ProductsManager.mongo.js"
+    console.log("connected to database");
+    dbConnection();
+    const { default: productsManagerMongo } = await import(
+      "./mongo/ProductsManager.mongo.js"
     );
-    const { default: cartManagerMongo } = await import(
-      "./mongo/managers/CartsManager.mongo.js"
+    const { default: cartsManagerMongo } = await import(
+      "./mongo/CartsManager.mongo.js"
     );
-    const { default: userManagerMongo } = await import(
-      "./mongo/managers/UsersManager.mongo.js"
+    const { default: usersManagerMongo } = await import(
+      "./mongo/UsersManager.mongo.js"
     );
     dao = {
-      users: userManagerMongo,
-      products: productManagerMongo,
-      carts: cartManagerMongo,
+      usersManager: usersManagerMongo,
+      productsManager: productsManagerMongo,
+      cartsManager: cartsManagerMongo,
     };
     break;
 }

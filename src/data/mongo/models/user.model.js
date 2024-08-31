@@ -1,22 +1,36 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 
-const collection = "users";
+let collection = "users";
+
 const schema = new Schema(
   {
-    email: { type: String, required: true, unique: true, index: true },
-    password: { type: String, required: true },
-    photo: {
+    username: {
       type: String,
-      default:
-        "https://blog.hubspot.es/hubfs/Co%CC%81mo%20hacer%20una%20marca%20personal.jpg",
+      required: true,
+      unique: true, //No repeate value in database
+      index: true,
+      default: "USER",
     },
-    role: { type: Number, default: 0 },
+    email: {
+      type: String,
+      required: true,
+      unique: true, //No repeate value in database
+      index: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Number,
+      default: 0,
+      index: true,
+    },
+    photo: { type: String, default: "/assets/icons/avatar.png" },
+    verify: { type: Boolean, default: false },
+    code: { type: String, required: true },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const User = model(collection, schema);
-
-export default User;
+export const User = model(collection, schema);

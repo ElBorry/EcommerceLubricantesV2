@@ -87,10 +87,8 @@ export const verifyCode = async (req, res, next) => {
 //Destroy user (not verifyCode)
 export const destroyUser = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    const checkUSer = await readByEmailService(email);
-    await destroyService(checkUSer._id);
-    return res.message200("User deleted due to code non-confirmation!");
+    await destroyService(req.params.uid);
+    return res.message200("User deleted!");
   } catch (error) {
     return next(error);
   }

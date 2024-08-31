@@ -13,6 +13,7 @@ class CreateProductsDto {
     this.category = data.category || "Action";
     this.price = data.price || 1;
     this.stock = data.stock || 1;
+    this.supplier_id = data.supplier_id;
     persistence !== "mongo" && (this.createdAt = new Date());
     persistence !== "mongo" && (this.updatedAt = new Date());
   }

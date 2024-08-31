@@ -15,7 +15,7 @@ const sendEmailLogin = async (data) => {
     });
     await transport.verify();
     await transport.sendMail({
-      from: `CODER STORE STORM <${variablesEnviroment.GOOGLE_EMAIL}>`,
+      from: `Shell Lubricenter <${variablesEnviroment.GOOGLE_EMAIL}>`,
       to: data.email,
       subject: `Verification code`,
       html: `
@@ -24,6 +24,7 @@ const sendEmailLogin = async (data) => {
       `,
     });
   } catch (error) {
+    console.error('Error sending email:', error);
     throw error;
   }
 };

@@ -15,7 +15,7 @@ const resetPasswordMail = async (data) => {
     });
     await transport.verify();
     await transport.sendMail({
-      from: `CODER STORE STORM <${variablesEnviroment.GOOGLE_EMAIL}>`,
+      from: `Shell Lubricenter <${variablesEnviroment.GOOGLE_EMAIL}>`,
       to: data.email,
       subject: `Verification code! (Reset Password)`,
       html: `

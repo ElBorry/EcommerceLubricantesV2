@@ -1,98 +1,82 @@
-import User from './models/user.model.js';
-import Product from './models/product.model.js';
-import Cart from './models/cart.model.js';
 class Manager {
   constructor(Model) {
     this.Model = Model;
   }
-  async create(data) {
+  create = async (data) => {
     try {
-      const one = await this.Model.create(data);
-      return one;
+      const newOne = await this.Model.create(data);
+      return newOne;
     } catch (error) {
       throw error;
     }
-  }
-
-  async aggregate(obj) {
+  };
+  read = async (filterInfo) => {
+    try {
+      const allData = await this.Model.find(filterInfo).lean();
+      return allData;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+  readOne = async (id) => {
+    try {
+      const itemInvidual = await this.Model.findById(id).lean();
+      return itemInvidual;
+    } catch (error) {
+      throw error;
+    }
+  };
+  readByEmail = async (email) => {
+    try {
+      const itemInvidual = await this.Model.findOne({ email }).lean();
+      return itemInvidual;
+    } catch (error) {
+      throw error;
+    }
+  };
+  update = async (id, data) => {
+    try {
+      //new:true return a object updated
+      const itemUpdated = await this.Model.findByIdAndUpdate(id, data, {
+        new: true,
+      }).lean();
+      return itemUpdated;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroy = async (id) => {
+    try {
+      const itemDeleted = await this.Model.findByIdAndDelete(id);
+      return itemDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroyMany = async (id) => {
+    try {
+      const itemsDeleted = await this.Model.deleteMany({ user_id: id });
+      return itemsDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  paginate = async ({ filter, opts }) => {
+    try {
+      const allData = await this.Model.paginate(filter, opts);
+      return allData;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+  aggregate = async (obj) => {
     try {
       const result = await this.Model.aggregate(obj);
       return result;
     } catch (error) {
       throw error;
     }
-  }
-
-  async read(filter) {
-    try {
-      const all = await this.Model.find(filter).lean();
-      return all;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async paginate({ filter, opts }) {
-    try {
-      const all = await this.Model.paginate(filter, opts);
-      if (all.totalDocs === 0) {
-        const error = new Error("There aren't any document");
-        error.statusCode = 404;
-        throw error;
-      }
-      return all;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async readOne(id) {
-    try {
-      const one = await this.Model.findOne({ _id: id }).lean();
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  }
-  async update(id, data) {
-    try {
-      const one = await this.Model.findByIdAndUpdate(id, data, { new: true });
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  }
-  async destroy(id) {
-    try {
-      const one = await this.Model.findByIdAndDelete(id);
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async destroyAll(id) {
-    try {
-      const all = await this.Model.deleteMany({user_id: id}).lean();
-      return all;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async readByEmail(email) {
-    try {
-      const one = await this.Model.findOne({ email });
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  }
+  };
 }
 
-const users = new Manager(User);
-const products = new Manager(Product);
-const carts = new Manager(Cart);
-
-export { users, products, carts };
 export default Manager;

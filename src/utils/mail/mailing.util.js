@@ -15,7 +15,7 @@ const sendEmail = async (data) => {
     });
     await transport.verify();
     await transport.sendMail({
-      from: `CODER STORE STORM <${variablesEnviroment.GOOGLE_EMAIL}>`,
+      from: `Shell Lubricenter <${variablesEnviroment.GOOGLE_EMAIL}>`,
       to: data.email,
       subject: `USER ${data.name.toUpperCase()} REGISTERED!`,
       html: `

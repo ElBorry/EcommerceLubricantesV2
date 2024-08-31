@@ -4,7 +4,7 @@ const swaggerOptions = {
   definition: {
     openapi: "3.1.0",
     info: {
-      title: "Storm Store",
+      title: "Shell Lubricenter",
       description: "Documentation of API",
     },
   },

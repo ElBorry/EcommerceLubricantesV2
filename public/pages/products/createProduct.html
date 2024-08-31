@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Product</title>
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen bg-[#dd1d21]">
+      <!-- Sticky Navbar -->
+      <div class="w-full sticky top-0 bg-amber-500 text-white z-50">
+        <nav class="grid grid-cols-3 gap-4 bg-[#ffffff]">
+          <!-- Logo -->
+          <div class="flex justify-center items-center">
+            <a href="../../index.html">
+              <img
+                src="../../assets/images/logoStore.jpg"
+                alt="Logo"
+                class="h-[80px] w-[80px]"
+              />
+            </a>
+          </div>
+          <!-- Store -->
+          <div class="flex justify-center items-center">
+            <a href="../../index.html">
+              <img
+                src="../../assets/icons/shopping-store.png"
+                alt="Logo"
+                class="h-[80px] w-[80px]"
+              />
+            </a>
+          </div>
+          <!-- Icons -->
+          <div class="flex justify-evenly items-center" id="headerIcons"></div>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div
+        class="flex-grow flex flex-col md:flex-row justify-center items-center max-w-7xl w-full mx-auto"
+      >
+        <div class="flex flex-col space-y-10 w-[90%]">
+          <h3 class="text-center text-4xl text-white font-medium">
+            New Product
+          </h3>
+          <div
+            class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-amber-500 text-white"
+          >
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              id="title"
+              autocomplete="off"
+              required
+              class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+            />
+          </div>
+          <div
+            class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-amber-500 text-white"
+          >
+            <input
+              type="text"
+              placeholder="Photo (URL)"
+              name="photo"
+              id="photo"
+              autocomplete="off"
+              class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+            />
+          </div>
+
+          <div
+            class="flex flex-col w-full transform border-b-2 bg-transparent text-lg duration-300"
+          >
+            <label class="text-white" for="category">Choose a category:</label>
+            <select name="categories" id="category">
+              <option value="">--Please choose an option--</option>
+              <option value="Aceite motor">Aceite motor</option>
+              <option value="Aceite para lancha">Aceite para lancha</option>
+              <option value="Aceite motor pesado">Aceite motor pesado</option>
+              <option value="Aceite transmisión">Aceite transmisión</option>
+              <option value="Aceite hidráulico">Aceite hidráulico</option>
+              <option value="Refrigerantes">Refrigerantes</option>
+            </select>
+          </div>
+
+          <div
+            class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-amber-500 text-white"
+          >
+            <input
+              type="number"
+              placeholder="Price"
+              name="price"
+              id="price"
+              min="1"
+              max="100"
+              autocomplete="off"
+              required
+              class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+            />
+          </div>
+
+          <div
+            class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-amber-500 text-white"
+          >
+            <input
+              type="number"
+              placeholder="Stock"
+              name="stock"
+              id="stock"
+              min="1"
+              max="100"
+              autocomplete="off"
+              required
+              class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+            />
+          </div>
+
+          <button
+            class="transform rounded-sm bg-amber-300 py-2 font-bold duration-300 hover:bg-amber-400"
+            onclick="createNewProduct()"
+          >
+            Create a new Product
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-red-500">Hello</footer>
+    </div>
+    <script type="module" src="../../scripts/newProduct.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

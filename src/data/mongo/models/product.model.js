@@ -1,24 +1,51 @@
-// product.model.js
-import { Schema, model } from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import { model, Schema, Types } from "mongoose";
+import mongossePaginate from "mongoose-paginate-v2";
 
 const collection = "products";
+
 const schema = new Schema(
   {
-    sku: { type: String, required: true },
-    title: { type: String, required: true },
-    photo: { type: String, required: true },
-    category: { type: String, required: true },
-    container: { type: String, required: true },
-    ltscontainer: { type: String, required: true },
-    stock: { type: Number, required: true },
-    liters: { type: Number, required: true },
+    title: {
+      type: String,
+      required: true,
+      index: true,
+    },
+    photo: {
+      type: String,
+      default: "/assets/icons/imagepreview.png",
+    },
+    category: {
+      type: String,
+      default: "Action",
+    },
+    price: {
+      type: Number,
+      default: 1,
+    },
+    stock: {
+      type: Number,
+      default: 1,
+    },
+    supplier_id: {
+      type: Types.ObjectId,
+      ref: "users",
+      required: true,
+      index: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-schema.plugin(mongoosePaginate);
-const Product = model(collection, schema);
-export default Product;
+schema.pre("find", function () {
+  this.populate("supplier_id");
+});
+
+schema.pre("findOne", function () {
+  this.populate({ path: "supplier_id" });
+});
+
+schema.plugin(mongossePaginate);
+
+export const Product = model(collection, schema);
