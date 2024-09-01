@@ -114,3 +114,4 @@ Estos métodos manejan errores utilizando `try/catch` más que todo se debe evid
 - En el `CUSTOM ERROR` se tienen respuestas predeterminadas para errores más que todo para la parte del passport, debido a que en el `CUSTOM ROUTER` ya se cuenta con respuestas predeterminadas.
 - SE pide las rutas con sessions, pero en mi caso estoy trabajando esa rutas con auth.
 - Para ver los productos se uso Paginate, en donde se tiene un filtro si es necesario usarlo.
+Espero que lo disfruten!
