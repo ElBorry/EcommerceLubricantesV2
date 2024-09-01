@@ -202,9 +202,9 @@ const totalCart = async () => {
     );
     totalResponse = await totalResponse.json();
     document.getElementById("subtotal").innerHTML =
-      "$ " + totalResponse.response[0].subTotal + " ARS";
+      "$ " + totalResponse.response[0].subTotal + " USD";
     document.getElementById("total").innerHTML =
-      "$ " + totalResponse.response[0].total + " ARS";
+      "$ " + totalResponse.response[0].total + " USD";
   }
 };
 

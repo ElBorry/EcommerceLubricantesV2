@@ -1,0 +1,15 @@
+// En thanks.html
+const urlParams = new URLSearchParams(window.location.search);
+const sessionId = urlParams.get('session_id');
+
+fetch(`/api/tickets/confirm-payment?session_id=${sessionId}`)
+  .then(response => response.json())
+  .then(data => {
+    if (data.message === "Purchase made, ticket created successfully.") {
+      // Mostrar un mensaje de éxito o redirigir a otra página
+      alert("Gracias por tu compra. Tu ticket ha sido creado.");
+    } else {
+      alert("Hubo un problema al crear tu ticket.");
+    }
+  })
+  .catch(error => console.error('Error:', error));

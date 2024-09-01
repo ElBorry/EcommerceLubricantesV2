@@ -16,11 +16,19 @@ export const register = async (req, res, next) => {
 };
 
 //Login user
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
-    return res
-      .cookie("token", req.token, { signedCookie: true })
-      .message200("Login successful");
+    const { email, password } = req.body;
+    const user = await readByEmailService(email);
+
+    if (user && verifyPassword(password, user.password)) {
+      req.session.user_id = user._id; // Guarda el user_id en la sesión
+      return res
+        .cookie("token", req.token, { signedCookie: true })
+        .message200("Login successful");
+    } else {
+      return res.error401("Invalid credentials");
+    }
   } catch (error) {
     return next(error);
   }
