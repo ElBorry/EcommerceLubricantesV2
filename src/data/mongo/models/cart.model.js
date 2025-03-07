@@ -1,23 +1,44 @@
-import { Schema, model, Types } from "mongoose"; 
+import { Schema, model, Types } from "mongoose";
 
-const collection = "carts"
-const cartSchema = new Schema(  
-    {
-        user_Id: { type: Types.ObjectId, required: true, index: true, ref: "users"},
-        product_Id: { type: Types.ObjectId, required: true, index: true, ref: "products"},
-        quantity: { type: Number, required: true },
-        state: {
-            type: String,
-            enum: ["reserved", "paid", "delivered"],
-            default: "reserved",
-        },
+const collection = "carts";
+const schema = new Schema(
+  {
+    user_id: {
+      type: Types.ObjectId,
+      ref: "users",
+      required: true,
+      index: true,
     },
-    { timestamps: true } 
+    product_id: {
+      type: Types.ObjectId,
+      ref: "products",
+      required: true,
+      index: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    state: {
+      type: String,
+      enum: ["reserved", "paid", "delivered"],
+      default: "reserved",
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
-cartSchema.pre("find", function(){
-    this.populate("user_Id").populate("product_Id");
-})
+schema.pre("find", function () {
+  this.populate("user_id");
+});
+schema.pre("find", function () {
+  this.populate("product_id");
+});
+schema.pre("findOne", function () {
+  this.populate({ path: "product_id" });
+  this.populate({ path: "user_id" });
+});
 
-const Cart = model(collection, cartSchema); 
-export default Cart;
+export const Cart = model(collection, schema);

@@ -1,95 +1,87 @@
 import {
   createService,
-  readService,
-  updateService,
+  destroyAllService,
   destroyService,
   readOneService,
-  destroyAllService,
+  readService,
+  updateService,
 } from "../services/carts.service.js";
 
-async function create(req, res, next) {
+//Create a new cart Item (user_id)
+export const create = async (req, res, next) => {
   try {
     const data = req.body;
-    const one = await createService(data);
-    if (one) {
-      return res.message201("Cart ID: " + one.id + " created successfully");
-    }
+    const newCartItem = await createService(data);
+    return newCartItem
+      ? res.message201("Item added successfully")
+      : res.error404("Error adding item to cart");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function read(req, res, next) {
+//Read <- get all items by user_id
+export const read = async (req, res, next) => {
   try {
-    const { user_id } = req.query;
-    if (user_id) {
-      const all = await readService({ user_id });
-      if (all.length > 0) {
-        return res.response200(all);
-      } else {
-        return res.error404();
-      }
-    }
+    const { uid } = req.query;
+    const cartItems = await readService({ user_id: uid });
+    return cartItems
+      ? res.response200(cartItems)
+      : res.error404("Not found items");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function readOne(req, res, next) {
+//Read individual cart item
+export const readOne = async (req, res, next) => {
   try {
     const { cid } = req.params;
-    const one = await readOneService(cid);
-    if (one) {
-      return res.response200(one);
-    } else {
-      return res.error404();
-    }
+    const cartItem = await readOneService(cid);
+    return cartItem
+      ? res.response200(cartItem)
+      : res.error404("Not found product with that ID!");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function update(req, res, next) {
+//Update a cart item
+export const update = async (req, res, next) => {
   try {
     const { cid } = req.params;
     const data = req.body;
-    const one = await updateService(cid, data);
-    if (one) {
-      return res.response200(one);
-    } else {
-      return res.error404();
-    }
+    const updateCartItem = await updateService(cid, data);
+    return updateCartItem
+      ? res.response200(updateCartItem)
+      : res.error404("Not found item with that ID to update!");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-async function destroyAll(req, res, next) {
-  try {
-    const { _id } = req.user;
-    const all = await destroyAllService(_id);
-    if (all) {
-      return res.response200(all);
-    } else {
-      return res.error404();
-    }
-  } catch (error) {
-    return next(error);
-  }
-}
-
-async function destroy(req, res, next) {
+//Delete a cart item
+export const destroy = async (req, res, next) => {
   try {
     const { cid } = req.params;
-    const one = await destroyService(cid);
-    if (one) {
-      return res.response200(one);
-    } else {
-      return res.error404();
-    }
+    const deleteCartItem = await destroyService(cid);
+    return deleteCartItem
+      ? res.message200("Item deleted successfully")
+      : res.error404("Error deleting item");
   } catch (error) {
     return next(error);
   }
-}
+};
 
-export { create, read, readOne, update, destroyAll, destroy };
+//Delete all cart items
+export const destroyAll = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const deleteCartItem = await destroyAllService(uid);
+    return deleteCartItem
+      ? res.message200("Empty shopping cart")
+      : res.error404("Error deleting shopping cart");
+  } catch (error) {
+    return next(error);
+  }
+};

@@ -1,1 +1,341 @@
-[]
+[
+  {
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a5cfd91697f58",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 20
+  },
+  {
+    "title": "God of War",
+    "photo": "https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png",
+    "category": "PlayStation",
+    "price": 49.99,
+    "stock": 15
+  },
+  {
+    "title": "Halo Infinite",
+    "photo": "https://cloudfront-us-east-1.images.arcpublishing.com/copesa/BVPSWA6JGRE3FBZJRQM74YVGGE.jpg",
+    "category": "Xbox",
+    "price": 69.99,
+    "stock": 25
+  },
+  {
+    "title": "Super Mario Odyssey",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001130/c42553b4fd0312c31e70ec7468c6c9bccd739f340152925b9600631f2d29f8b5",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 30
+  },
+  {
+    "title": "Spider-Man: Miles Morales",
+    "photo": "https://www.commonsensemedia.org/sites/default/files/styles/ratio_16_9_large/public/video-thumbnails/miles-morales-site-thmb.jpg",
+    "category": "PlayStation",
+    "price": 39.99,
+    "stock": 10
+  },
+  {
+    "title": "Forza Horizon 5",
+    "photo": "https://cdn.akamai.steamstatic.com/steam/apps/1551360/capsule_616x353.jpg?t=1714086603",
+    "category": "Xbox",
+    "price": 59.99,
+    "stock": 18
+  },
+  {
+    "title": "Animal Crossing: New Horizons",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000027619/9989957eae3a6b545194c42fec2071675c34aadacd65e6b33fdfe7b3b6a86c3a",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 25
+  },
+  {
+    "title": "The Last of Us Part II",
+    "photo": "https://image.api.playstation.com/vulcan/img/rnd/202010/2618/w48z6bzefZPrRcJHc7L8SO66.png",
+    "category": "PlayStation",
+    "price": 29.99,
+    "stock": 15
+  },
+  {
+    "title": "Gears 5",
+    "photo": "https://store-images.s-microsoft.com/image/apps.65421.65494054591008504.4eae27ba-1cfe-4af2-950a-4af81f8cd22a.fd4fa6b5-431f-47bc-b9c8-3844383dfb20?q=90&w=480&h=270",
+    "category": "Xbox",
+    "price": 39.99,
+    "stock": 20
+  },
+  {
+    "title": "Mario Kart 8 Deluxe",
+    "photo": "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2023/11/mario_kart_8_deluxe_booster_course_pass.png?resize=930%2C620&ssl=1",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 50
+  },
+  {
+    "title": "Uncharted 4: A Thief's End",
+    "photo": "https://assetsio.gnwcdn.com/ar4v3.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp",
+    "category": "PlayStation",
+    "price": 19.99,
+    "stock": 25
+  },
+  {
+    "title": "FIFA 22",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000038676/02b078ec6e65f597dc655c1b958bf2dd07961ea45db4d59688ca8746bf28ae6d",
+    "category": "Xbox",
+    "price": 59.99,
+    "stock": 35
+  },
+  {
+    "title": "Splatoon 2",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000529/b0b183a9860296016649fadb03b929411e7e5e0809af241e2e9652ebf0c5a715",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 22
+  },
+  {
+    "title": "Ratchet & Clank: Rift Apart",
+    "photo": "https://image.api.playstation.com/vulcan/ap/rnd/202101/2921/5wUNGl8SSVEurJ2odm0hC1jJ.jpg",
+    "category": "PlayStation",
+    "price": 69.99,
+    "stock": 12
+  },
+  {
+    "title": "Fable Anniversary",
+    "photo": "https://assetsio.gnwcdn.com/u4nokpt6ronllqujsc3j.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp",
+    "category": "Xbox",
+    "price": 29.99,
+    "stock": 18
+  },
+  {
+    "title": "Luigi's Mansion 3",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001620/2b166fb3197dacfde1d939acd6a976b9fbe3b1a32c54f9f0d2c8d23efb22412d",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 25
+  },
+  {
+    "title": "Horizon Zero Dawn",
+    "photo": "https://i.ytimg.com/vi_webp/wwzmInYpPdA/maxresdefault.webp",
+    "category": "PlayStation",
+    "price": 19.99,
+    "stock": 30
+  },
+  {
+    "title": "Sea of Thieves",
+    "photo": "https://assets.xboxservices.com/assets/2b/b2/2bb25da9-8da5-475b-a47a-fbc9424ef437.jpg?n=SoT_Gallery_1350x759_12.jpg",
+    "category": "Xbox",
+    "price": 39.99,
+    "stock": 22
+  },
+  {
+    "title": "Pokémon Sword",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000004496/1a7e765fe91da863330208620c5446908cc7ae47108a80a168ff65356df764db",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 40
+  },
+  {
+    "title": "Gran Turismo 7",
+    "photo": "https://blog.latam.playstation.com/tachyon/sites/3/2022/03/a730b12243d5c8f700aae0df31c9d33ba53f945d.jpeg?resize=1088%2C612&crop_strategy=smart",
+    "category": "PlayStation",
+    "price": 69.99,
+    "stock": 15
+  },
+  {
+    "title": "Ori and the Will of the Wisps",
+    "photo": "https://store-images.s-microsoft.com/image/apps.54355.14047496556148589.c22f253d-c9b9-4f11-aee9-75e0ca6ecf73.b40d5201-dd16-4abb-bc50-bd538df83c03",
+    "category": "Xbox",
+    "price": 29.99,
+    "stock": 20
+  },
+  {
+    "title": "Super Smash Bros. Ultimate",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 35
+  },
+  {
+    "title": "Bloodborne",
+    "photo": "https://image.api.playstation.com/vulcan/img/rnd/202010/2614/NVmnBXze9ElHzU6SmykrJLIV.png",
+    "category": "PlayStation",
+    "price": 19.99,
+    "stock": 18
+  },
+  {
+    "title": "Sunset Overdrive",
+    "photo": "https://store-images.s-microsoft.com/image/apps.45968.69444514893807971.ab5f1b93-5a0c-4e23-9a17-465a62377bd1.abb1691a-43c4-4079-b18e-ea3c3901e5ec?q=90&w=480&h=270",
+    "category": "Xbox",
+    "price": 19.99,
+    "stock": 20
+  },
+  {
+    "title": "Xenoblade Chronicles 2",
+    "photo": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000000707/4cd12c9f2233dc671d0ac2bc208f8551d1d0b62c956d6d477585bb42c1ef09ea",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 18
+  },
+  {
+    "title": "Ghost of Tsushima",
+    "photo": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/b3iB2zf2xHj9shC0XDTULxND.png",
+    "category": "PlayStation",
+    "price": 59.99,
+    "stock": 25
+  },
+  {
+    "title": "Quantum Break",
+    "photo": "https://img.redbull.com/images/c_fill,w_1200,h_600,g_auto,f_auto,q_auto/redbullcom/2016/08/12/1331811817695_2/quantum-break",
+    "category": "Xbox",
+    "price": 29.99,
+    "stock": 15
+  },
+  {
+    "title": "Fire Emblem: Three Houses",
+    "photo": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000007606/c499fdc86779ca95e61daed1f94288a245d196360d278138e56d44097d1a3878",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 22
+  },
+  {
+    "title": "Death Stranding",
+    "photo": "https://assets.xboxservices.com/assets/f4/7e/f47e875c-d302-4f8b-abc0-cd867f60a48f.jpg?n=475369_GLP-Page-Hero-1084_1920x1080_02.jpg",
+    "category": "PlayStation",
+    "price": 39.99,
+    "stock": 20
+  },
+  {
+    "title": "Forza Motorsport 7",
+    "photo": "https://i.blogs.es/068e27/forza7_porscheinthelead_4k/1366_2000.jpg",
+    "category": "Xbox",
+    "price": 49.99,
+    "stock": 30
+  },
+  {
+    "title": "Metroid Dread",
+    "photo": "https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_1.5/ncom/software/switch/70010000042924/be72265a9fe9acc84abb3d97d79e6d638c479485d06548d49390e2f5046d305b",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 25
+  },
+  {
+    "title": "Final Fantasy VII Remake",
+    "photo": "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/4/8/hthjdf72mtthkltjvuoj/final-fantasy-7-consejos",
+    "category": "PlayStation",
+    "price": 59.99,
+    "stock": 18
+  },
+  {
+    "title": "State of Decay 2",
+    "photo": "https://assets.xboxservices.com/assets/c8/e6/c8e6d90d-d94a-4e1c-a7aa-274ccae865dd.jpg?n=SoD2_GLP-Page-Hero-1084_Juggernaut_1920x1080_02.jpg",
+    "category": "Xbox",
+    "price": 29.99,
+    "stock": 25
+  },
+  {
+    "title": "Pikmin 3 Deluxe",
+    "photo": "https://i.ytimg.com/vi/Om7fzKkg7-c/maxresdefault.jpg",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 18
+  },
+  {
+    "title": "Demon's Souls",
+    "photo": "https://image.api.playstation.com/vulcan/img/rnd/202011/1716/9jRQWmnsX9SVmdGYoVzjcg4T.png",
+    "category": "PlayStation",
+    "price": 69.99,
+    "stock": 15
+  },
+  {
+    "title": "The Medium",
+    "photo": "https://cdn.cloudflare.steamstatic.com/steam/apps/1293160/capsule_616x353.jpg?t=1698655063",
+    "category": "Xbox",
+    "price": 49.99,
+    "stock": 20
+  },
+  {
+    "title": "Kirby Star Allies",
+    "photo": "https://i.ytimg.com/vi/RCPH52jskQU/maxresdefault.jpg",
+    "category": "Nintendo",
+    "price": 59.99,
+    "stock": 22
+  },
+  {
+    "title": "Days Gone",
+    "photo": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0921/B7jV8ThPs8eqDz8NRRllf7g6.jpg",
+    "category": "PlayStation",
+    "price": 39.99,
+    "stock": 20
+  },
+  {
+    "title": "Gears Tactics",
+    "photo": "https://cdn.cloudflare.steamstatic.com/steam/apps/1184050/ss_3275d89a45bb397f07b743cffc26c25ff34c3c35.1920x1080.jpg?t=1694616448",
+    "category": "Xbox",
+    "price": 39.99,
+    "stock": 18
+  },
+  {
+    "title": "Assassin's Creed Valhalla",
+    "photo": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/6ZAlQrGYxXi8Bo8PuhJd5g/206c57ecb27e58b4555089c6c80d3db5/ACV_meta.png",
+    "category": "PlayStation",
+    "price": 59.99,
+    "stock": 28
+  },
+  {
+    "id": "2b5d5ee095901da0fbe2bcc8",
+    "title": "new one 100",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "f28e1010d9aa9e07885b6480",
+    "title": "new one 101",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "_id": "9ae2c0d40181a4d1860e81d9",
+    "title": "new one 102",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "colors": [
+      ""
+    ],
+    "createdAt": "2024-06-22T04:50:38.922Z",
+    "updatedAt": "2024-06-22T04:50:38.922Z"
+  },
+  {
+    "_id": "95bb316f2fa7a941c4dba1f0",
+    "title": "new one 103",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T04:51:00.074Z",
+    "updatedAt": "2024-06-22T04:51:00.074Z"
+  },
+  {
+    "_id": "47d46163a1eb4421ad024eb8",
+    "title": "new one 110",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T05:33:13.969Z",
+    "updatedAt": "2024-06-22T05:33:13.969Z"
+  },
+  {
+    "_id": "fd6964b1894da79a8c2300ee",
+    "title": "new one 111",
+    "photo": "/assets/icons/imagepreview.png",
+    "category": "Action",
+    "price": 1,
+    "stock": 1,
+    "createdAt": "2024-06-22T05:33:49.538Z",
+    "updatedAt": "2024-06-22T05:33:49.538Z"
+  }
+]

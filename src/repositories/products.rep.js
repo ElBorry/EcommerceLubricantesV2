@@ -1,60 +1,89 @@
+//DAO - Assign corresponding manager
 import dao from "../data/dao.factory.js";
-const { products } = dao;
-import ProductsDTO from "../dto/products.dto.js";
+import CreateProductsDto from "../dto/create/products.dto.create.js";
+import UpdateProductsDto from "../dto/update/products.dto.update.js";
+
+const { productsManager } = dao;
+
 class ProductsRepository {
   constructor(manager) {
-    this.model = manager;
+    this.manager = manager;
   }
   createRepository = async (data) => {
     try {
-      data = new ProductsDTO(data);
-      const one = await this.model.create(data);
-      return one;
+      data = new CreateProductsDto(data);
+      const newItem = await this.manager.create(data);
+      return newItem;
     } catch (error) {
       throw error;
     }
   };
-  readRepository = async (filter) => {
+  readRepository = async (filterInfo) => {
     try {
-      const all = await this.model.read(filter);
-      return all;
+      const allData = await this.manager.read(filterInfo);
+      return allData;
     } catch (error) {
       throw error;
     }
   };
-  readOneRepository = async (id) => {
+  readOneRepository = async (uid) => {
     try {
-      const one = await this.model.readOne(id);
-      return one;
+      const itemInvidual = await this.manager.readOne(uid);
+      return itemInvidual;
+    } catch (error) {
+      throw error;
+    }
+  };
+  readByEmailRepository = async (email) => {
+    try {
+      const itemInvidual = await this.manager.readByEmail(email);
+      return itemInvidual;
+    } catch (error) {
+      throw error;
+    }
+  };
+  updateRepository = async (uid, data) => {
+    try {
+      data = new UpdateProductsDto(data);
+      const itemUpdated = await this.manager.update(uid, data);
+      return itemUpdated;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroyRepository = async (uid) => {
+    try {
+      const itemDeleted = await this.manager.destroy(uid);
+      return itemDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroyAllRepository = async (uid) => {
+    try {
+      const itemsDeleted = await this.manager.destroyMany(uid);
+      return itemsDeleted;
     } catch (error) {
       throw error;
     }
   };
   paginateRepository = async ({ filter, opts }) => {
     try {
-      const all = await this.model.paginate({ filter, opts });
-      return all;
+      const allData = await this.manager.paginate({ filter, opts });
+      return allData;
     } catch (error) {
       throw error;
     }
   };
-  updateRepository = async (id, data) => {
+  aggregateRepository = async (obj) => {
     try {
-      const one = await this.model.update(id, data);
-      return one;
-    } catch (error) {
-      throw error;
-    }
-  };
-  destroyRepository = async (id) => {
-    try {
-      const one = await this.model.destroy(id);
-      return one;
+      const result = await this.manager.aggregate(obj);
+      return result;
     } catch (error) {
       throw error;
     }
   };
 }
 
-const productsRepository = new ProductsRepository(products);
+const productsRepository = new ProductsRepository(productsManager);
 export default productsRepository;

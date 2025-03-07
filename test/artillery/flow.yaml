@@ -1,0 +1,29 @@
+config:
+  plugins:
+    metrics-by-endpoint: {}
+  target: http://localhost:8080/api
+  phases:
+    - duration: 20
+      arrivalRate: 10
+
+  variables:
+    username: "camilo2023"
+    email: "cami2023@hotmail.com"
+    password: "hola1234"
+    id: "6684c7a421facccc61932ccb"
+
+scenarios:
+  - name: "Login CRUD and signout"
+    flow:
+      - log: "Login"
+      - post:
+          url: /auth/login
+          json:
+            email: "{{ email }}"
+            password: "{{ password }}"
+      - log: "Get all Products"
+      - get:
+          url: /products/paginate
+      - log: "Get a Product by ID"
+      - get:
+          url: /products/{{id}}

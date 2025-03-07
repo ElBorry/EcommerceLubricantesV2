@@ -1,82 +1,72 @@
 import {
   createService,
-  updateService,
-  readService,
-  destroyService,
   readOneService,
+  readService,
+  updateService,
+  destroyService,
 } from "../services/users.service.js";
 
-class UsersController {
-  async create(req, res, next) {
-    try {
-      const data = req.body;
-      const one = await createService(data);
-      if (one) {
-        res.message201("User ID: " + one._id);
-      }
-    } catch (error) {
-      return next(error);
-    }
+//Create a new user
+export const create = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const newUser = await createService(data);
+    return newUser
+      ? res.message201("User created successfully")
+      : res.error404("Problems creating user");
+  } catch (error) {
+    return next(error);
   }
+};
 
-  async update(req, res, next) {
-    try {
-      const { uid } = req.params;
-      const data = req.body;
-      const one = updateService(uid, data);
-      if (one) {
-        res.response200(one);
-      } else {
-        res.error404();
-      }
-    } catch (error) {
-      return next(error);
-    }
+//Read <- get all users or get for role
+export const read = async (req, res, next) => {
+  try {
+    const { role } = req.query;
+    const users = await readService(role);
+    return users.length > 0
+      ? res.response200(users)
+      : res.error404("Not found role/data!");
+  } catch (error) {
+    return next(error);
   }
+};
 
-  async read(req, res, next) {
-    try {
-      const { role } = req.query;
-      const all = await readService(role);
-      if (all.length > 0) {
-        res.response200(all);
-      } else {
-        res.error404();
-      }
-    } catch (error) {
-      return next(error);
-    }
+//Read <- get user by ID
+export const readOne = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const user = await readOneService(uid);
+    return user
+      ? res.response200(user)
+      : res.error404("Not found user with that ID!");
+  } catch (error) {
+    return next(error);
   }
+};
 
-  async readOne(req, res, next) {
-    try {
-      const { uid } = req.params;
-      const one = await readOneService(uid);
-      if (one) {
-        res.response200(one);
-      } else {
-        res.error404();
-      }
-    } catch (error) {
-      return next(error);
-    }
+//Update a user
+export const update = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const data = req.body;
+    const updateUser = await updateService(uid, data);
+    return updateUser
+      ? res.response200(updateUser)
+      : res.error404("Not found user with that ID to update!");
+  } catch (error) {
+    return next(error);
   }
+};
 
-  async destroy(req, res, next) {
-    try {
-      const { uid } = req.params;
-      const one = await destroyService(uid);
-      if (one) {
-        res.response200(one);
-      } else {
-        res.error404();
-      }
-    } catch (error) {
-      return next(error);
-    }
+export const destroy = async (req, res, next) => {
+  try {
+    const { uid } = req.params;
+    const deleteUser = await destroyService(uid);
+    return deleteUser
+      ? res.response200(deleteUser)
+      : res.error404("Not found user with that ID to delete!");
+  } catch (error) {
+    return next(error);
   }
-}
-
-const usersController = new UsersController();
-const { create, update, read, readOne, destroy } = usersController;
-export { create, update, read, readOne, destroy };
+};

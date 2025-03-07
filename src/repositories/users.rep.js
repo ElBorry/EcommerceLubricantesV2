@@ -1,61 +1,89 @@
+//DAO - Assign corresponding manager
 import dao from "../data/dao.factory.js";
-import UsersDTO from "../dto/users.dto.js";
-const { users } = dao;
+import CreateUsersDto from "../dto/create/users.dto.create.js";
+import UpdateUsersDto from "../dto/update/users.dto.update.js";
+
+const { usersManager } = dao;
 
 class UsersRepository {
   constructor(manager) {
-    this.model = manager;
+    this.manager = manager;
   }
   createRepository = async (data) => {
     try {
-      data = new UsersDTO(data);
-      const one = await this.model.create(data);
-      return one;
+      data = new CreateUsersDto(data);
+      const newItem = await this.manager.create(data);
+      return newItem;
     } catch (error) {
       throw error;
     }
   };
-  readRepository = async (role) => {
+  readRepository = async (filterInfo) => {
     try {
-      const all = await this.model.read(role);
-      return all;
+      const allData = await this.manager.read(filterInfo);
+      return allData;
     } catch (error) {
       throw error;
     }
   };
   readOneRepository = async (uid) => {
     try {
-      const one = await this.model.readOne(uid);
-      return one;
+      const itemInvidual = await this.manager.readOne(uid);
+      return itemInvidual;
     } catch (error) {
       throw error;
     }
   };
   readByEmailRepository = async (email) => {
     try {
-      const one = await this.model.readByEmail(email);
-      return one;
+      const itemInvidual = await this.manager.readByEmail(email);
+      return itemInvidual;
     } catch (error) {
       throw error;
     }
   };
   updateRepository = async (uid, data) => {
     try {
-      const one = await this.model.update(uid, data);
-      return one;
+      data = new UpdateUsersDto(data);
+      const itemUpdated = await this.manager.update(uid, data);
+      return itemUpdated;
     } catch (error) {
       throw error;
     }
   };
   destroyRepository = async (uid) => {
     try {
-      const one = await this.model.destroy(uid);
-      return one;
+      const itemDeleted = await this.manager.destroy(uid);
+      return itemDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  destroyAllRepository = async (uid) => {
+    try {
+      const itemsDeleted = await this.manager.destroyMany(uid);
+      return itemsDeleted;
+    } catch (error) {
+      throw error;
+    }
+  };
+  paginateRepository = async ({ filter, opts }) => {
+    try {
+      const allData = await this.manager.paginate({ filter, opts });
+      return allData;
+    } catch (error) {
+      throw error;
+    }
+  };
+  aggregateRepository = async (obj) => {
+    try {
+      const result = await this.manager.aggregate(obj);
+      return result;
     } catch (error) {
       throw error;
     }
   };
 }
 
-const usersRepository = new UsersRepository(users)
+const usersRepository = new UsersRepository(usersManager);
 export default usersRepository;
